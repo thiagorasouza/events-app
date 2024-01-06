@@ -6,9 +6,11 @@ An events app to join expat events in Lisbon in one place.
 
 - [x] Install NEXT.js
 - [x] Install git-commit-msg-linter
-- [ ] Install ShadCN
+- [x] Install ShadCN
+- [x] Install Prettier
 - [ ] Install UploadThing
 - [ ] Compile and see if everything is working
 
 ## :wrench: Credits
+
 This app is under development by :rocket: Thiago Souza (@thiagorasouza)
