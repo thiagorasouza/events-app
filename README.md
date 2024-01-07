@@ -11,7 +11,8 @@ An events app to join expat events in Lisbon in one place.
 - [x] Compile and see if everything is working
 - [x] Implement Header
 - [x] Implement Navbar
-- [ ] Implement Footer
+- [x] Implement Footer
+- [x] Implement Hero Section
 
 ## :wrench: Credits
 
