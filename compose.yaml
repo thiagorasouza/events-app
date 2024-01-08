@@ -1,0 +1,12 @@
+services:
+  nextjs:
+    image: node:20
+    container_name: nextjs
+    user: node
+    working_dir: /app
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
+    restart: always
+    command: sh -c "npm i && npm run dev"
