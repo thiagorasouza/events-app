@@ -13,6 +13,10 @@ An events app to join expat events in Lisbon in one place.
 - [x] Implement Navbar
 - [x] Implement Footer
 - [x] Implement Hero Section
+- [ ] Dockerize dev environment to Vercel's build system
+- [ ] Install Clerk
+- [ ] Implement authentication
+- [ ] Design data models
 
 ## :wrench: Credits
 
