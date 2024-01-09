@@ -15,8 +15,10 @@ An events app to join expat events in Lisbon in one place.
 - [x] Implement Hero Section
 - [x] Dockerize dev environment to Vercel's build system
 - [x] Install Clerk
-- [ ] Implement authentication
+- [x] Implement authentication
+- [ ] Choose and install an ORM
 - [ ] Design data models
+- [ ] Check the database integration
 
 ## :wrench: Credits
 
