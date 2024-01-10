@@ -10,3 +10,15 @@ services:
       - ./:/app
     restart: always
     command: sh -c "npm i && npm run dev"
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: admin123
+    volumes:
+      - database:/var/lib/postgresql/data
+
+volumes:
+  database:
