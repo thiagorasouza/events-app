@@ -9,3 +9,37 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id          Int      @id @default(autoincrement())
+  clerkId     String   @unique
+  name        String?
+  email       String
+  bio         String?
+  picture_url String?
+  organizing  Event[]  @relation(name: "organizers")
+  attending   Event[]  @relation(name: "attendees")
+  createdAt   DateTime @default(now())
+}
+
+model Event {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String
+  location      String
+  startDateTime DateTime
+  endDateTime   DateTime
+  image_url     String
+  external_url  String
+  category      Category @relation(fields: [categoryId], references: [id])
+  categoryId    Int
+  organizer     User     @relation(name: "organizers", fields: [organizerId], references: [id])
+  organizerId   Int
+  attendees     User[]   @relation(name: "attendees")
+}
+
+model Category {
+  id    Int     @id @default(autoincrement())
+  name  String
+  Event Event[]
+}
