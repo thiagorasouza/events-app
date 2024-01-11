@@ -16,9 +16,11 @@ An events app to join expat events in Lisbon in one place.
 - [x] Dockerize dev environment to Vercel's build system
 - [x] Install Clerk
 - [x] Implement authentication
+- [ ] Setup local database
+- [ ] Test database setup
 - [ ] Choose and install an ORM
 - [ ] Design data models
-- [ ] Check the database integration
+- [ ] Check the database ORM integration
 
 ## :wrench: Credits
 
