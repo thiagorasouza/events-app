@@ -21,6 +21,10 @@ An events app to join expat events in Lisbon in one place.
 - [x] Choose and install an ORM
 - [x] Design data models
 - [x] Check the database ORM integration
+- [x] Mock data to start building event list
+- [ ] Custom sign-in page
+- [ ] Custom sign-up page
+- [ ] Setup Clerk webhook to create User on local db
 
 ## :wrench: Credits
 
