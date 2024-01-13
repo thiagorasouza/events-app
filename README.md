@@ -20,7 +20,7 @@ An events app to join expat events in Lisbon in one place.
 - [x] Test database setup
 - [x] Choose and install an ORM
 - [x] Design data models
-- [ ] Check the database ORM integration
+- [x] Check the database ORM integration
 
 ## :wrench: Credits
 
