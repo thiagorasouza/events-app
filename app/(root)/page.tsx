@@ -1,3 +1,4 @@
+import Collection from "@/components/home/Collection";
 import Hero from "@/components/home/Hero";
 import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
@@ -7,6 +8,7 @@ export default function Home() {
       <Header />
       <main className="md:w-5/6 mx-auto">
         <Hero />
+        <Collection />
       </main>
       <Footer />
     </div>
