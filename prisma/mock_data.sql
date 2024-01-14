@@ -1,3 +1,9 @@
+-- Run PSQL on the same container network
+-- sudo service docker start
+-- docker-compose up -d
+-- docker run --rm -it --network events-app_default postgres psql -h postgres -p 5432 -U postgres -d events
+-- passwd admin123
+
 -- Mock Users
 INSERT INTO "User" ("clerkId", "name", "email", "bio", "picture_url") VALUES
     ('clerk1', 'John Doe', 'john.doe@example.com', 'Bio 1 - John Doe', 'https://randomuser.me/api/portraits/men/1.jpg'),
@@ -29,7 +35,10 @@ INSERT INTO "Event" ("title", "description", "location", "startDateTime", "endDa
     ('Art Exhibition', 'Explore creative masterpieces', 'Art Gallery', '2024-01-17 10:00:00', '2024-01-17 18:00:00', 'https://source.unsplash.com/800x600/?art', 'https://example.com/art-exhibition', 5, 5),
     ('Science Fair', 'Discover the wonders of science', 'Science Museum', '2024-01-18 09:00:00', '2024-01-18 16:00:00', 'https://source.unsplash.com/800x600/?science', 'https://example.com/science-fair', 6, 6),
     ('Gaming Expo', 'Experience the latest in gaming technology', 'Gaming Convention Center', '2024-01-19 10:00:00', '2024-01-19 18:00:00', 'https://source.unsplash.com/800x600/?gaming', 'https://example.com/gaming-expo', 2, 7),
-    ('Fashion Show', 'Witness the latest trends on the runway', 'Fashion Arena', '2024-01-20 15:00:00', '2024-01-20 21:00:00', 'https://source.unsplash.com/800x600/?fashion', 'https://example.com/fashion-show', 5, 8),
+    ('Fashion Show', 'Witness the latest trends on the runway', 'Fashion Arena', '2024-01-20 15:00:00', '2024-01-20 21:00:00', 'https://source.unsplash.com/800x600/?fashion', 'https://example.com/fashion-show', 5, 8);
+
+
+INSERT INTO "Event" ("title", "description", "location", "startDateTime", "endDateTime", "image_url", "external_url", "categoryId", "organizerId") VALUES
     ('Fitness Challenge', 'Join the ultimate fitness competition', 'Fitness Park', '2024-01-21 08:00:00', '2024-01-21 12:00:00', 'https://source.unsplash.com/800x600/?fitness', 'https://example.com/fitness-challenge', 3, 9),
     ('Movie Night', 'Enjoy an outdoor movie night under the stars', 'Open Field', '2024-01-22 19:00:00', '2024-01-22 23:00:00', 'https://source.unsplash.com/800x600/?movie', 'https://example.com/movie-night', 1, 10),
     ('Tech Startup Summit', 'Connect with innovative tech startups', 'Startup Hub', '2024-01-23 11:00:00', '2024-01-23 16:00:00', 'https://source.unsplash.com/800x600/?startup', 'https://example.com/startup-summit', 2, 6),
@@ -42,8 +51,7 @@ INSERT INTO "Event" ("title", "description", "location", "startDateTime", "endDa
 -- Additional Attendees
 INSERT INTO "_attendees" ("A", "B") VALUES
     (11, 2), (11, 3), (11, 4), (12, 1), (12, 2), (13, 3), (13, 4), (13, 5),
-    (14, 6), (14, 7), (15, 8), (15, 9), (16, 10), (16, 1), (17, 2), (17, 3),
-    (18, 4), (18, 5), (18, 6), (19, 7), (19, 8), (19, 9), (20, 10), (20, 1),
+    (14, 6), (14, 7), (15, 8), (15, 9), (16, 10), (16, 1),
     (1, 4), (1, 5), (1, 6), (2, 4), (2, 5), (3, 6), (3, 7), (3, 8),
     (4, 1), (4, 2), (4, 3), (5, 1), (5, 2), (6, 3), (6, 4), (6, 5),
     (7, 1), (7, 2), (8, 3), (8, 4), (8, 5), (9, 6), (9, 7), (10, 8);
