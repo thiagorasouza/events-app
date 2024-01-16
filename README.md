@@ -25,7 +25,7 @@ An events app to join expat events in Lisbon in one place.
 - [x] Run data mocks
 - [x] Implement home page grid
 - [x] Custom sign-in page
-- [ ] Custom sign-up page
+- [x] Custom sign-up page
 - [ ] Setup Clerk webhook to create User on local db
 
 ## :wrench: Credits
