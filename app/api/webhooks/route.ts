@@ -13,7 +13,6 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
-  // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
@@ -28,18 +27,23 @@ export async function POST(req: Request) {
   const svix_timestamp = headerPayload.get("svix-timestamp");
   const svix_signature = headerPayload.get("svix-signature");
 
-  // If there are no headers, error out
   if (!svix_id || !svix_timestamp || !svix_signature) {
-    return new Response("Error occured -- no svix headers", {
+    console.error("Bad Request - no svix headers");
+    return new Response("Bad Request", {
       status: 400,
     });
   }
 
-  // Get the body
-  const payload = await req.json();
-  const body = JSON.stringify(payload);
+  let body;
+  try {
+    body = JSON.stringify(await req.json());
+  } catch (error) {
+    console.error("Bad Request - malformed payload");
+    return new Response("Bad Request", {
+      status: 400,
+    });
+  }
 
-  // Create a new Svix instance with your secret.
   const wh = new Webhook(WEBHOOK_SECRET);
 
   let evt: WebhookEvent;
@@ -52,8 +56,8 @@ export async function POST(req: Request) {
       "svix-signature": svix_signature,
     }) as WebhookEvent;
   } catch (err) {
-    console.error("Error verifying webhook:", err);
-    return new Response("Error occured", {
+    console.error("Bad Request - error verifying webhook", err);
+    return new Response("Bad Request", {
       status: 400,
     });
   }
@@ -64,17 +68,23 @@ export async function POST(req: Request) {
   if (eventType === "user.created") {
     const { id, email_addresses, image_url, created_at } = evt.data;
 
-    const user = await prisma.user.create({
-      data: {
-        clerkId: id,
-        email: email_addresses[0].email_address,
-        picture_url: image_url,
-        createdAt: new Date(created_at),
-      },
-    });
+    try {
+      await prisma.user.create({
+        data: {
+          clerkId: id,
+          email: email_addresses[0].email_address,
+          picture_url: image_url,
+          createdAt: new Date(created_at),
+        },
+      });
+    } catch (error) {
+      console.error(error, evt.data);
+      return new Response("Internal Server Error", { status: 500 });
+    }
 
-    return new Response("", { status: 200 });
+    return new Response("Success", { status: 200 });
   }
 
-  return new Response("", { status: 404 });
+  console.error("Not Found - event type unknown", eventType);
+  return new Response("Not Found", { status: 404 });
 }
