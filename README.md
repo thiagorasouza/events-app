@@ -30,8 +30,9 @@ An events app to join expat events in Lisbon in one place.
 - [x] Setup Clerk webhook to create User on local db
 - [x] Perform error handling on user creation
 - [ ] Check for resilience on clerk webhook
-- [ ] Create basic event creation page layout
-- [ ] Create shadcn form blueprint
+- [x] Create basic event creation page layout
+- [x] Create shadcn form blueprint
+- [ ] Check for layout breaking
 - [ ] Implement title and description fields
 - [ ] Implement upload image field
 
