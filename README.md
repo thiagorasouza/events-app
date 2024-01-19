@@ -32,7 +32,7 @@ An events app to join expat events in Lisbon in one place.
 - [ ] Check for resilience on clerk webhook
 - [x] Create basic event creation page layout
 - [x] Create shadcn form blueprint
-- [ ] Check for layout breaking
+- [x] Check for layout breaking on mobile
 - [ ] Implement title and description fields
 - [ ] Implement upload image field
 
