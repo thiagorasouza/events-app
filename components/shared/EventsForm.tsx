@@ -58,6 +58,7 @@ function EventsForm() {
         <TextInput name="title" label="Title" control={form.control} />
         <TextInput name="location" label="Location" control={form.control} />
         <DateInput name="startDateTime" label="Start" control={form.control} />
+        <DateInput name="endDateTime" label="End" control={form.control} />
         <Button type="submit">Submit</Button>
       </form>
     </Form>

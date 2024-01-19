@@ -33,7 +33,10 @@ An events app to join expat events in Lisbon in one place.
 - [x] Create basic event creation page layout
 - [x] Create shadcn form blueprint
 - [x] Check for layout breaking on mobile
-- [ ] Implement title and description fields
+- [x] Implement title field
+- [x] Implement location field
+- [ ] Implement startDateTime field
+- [ ] Implement description field
 - [ ] Implement upload image field
 
 ## :wrench: Credits
