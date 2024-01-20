@@ -37,7 +37,7 @@ An events app to join expat events in Lisbon in one place.
 - [x] Implement location field
 - [x] Implement startDateTime field
 - [x] Implement endDateTime field
-- [ ] Implement description field
+- [x] Implement description field
 - [ ] Implement upload image field
 
 ## :wrench: Credits
