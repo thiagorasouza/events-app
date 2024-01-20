@@ -5,18 +5,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea";
 
 import TextInput from "./TextInput";
 import DateInput from "./DateInput";
 import { TimePicker } from "./TimePicker";
 import TextareaField from "./TextareaField";
+import DropzoneField from "./DropZoneField";
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
   location: z.string().min(2).max(50),
   startDateTime: z.date(),
   endDateTime: z.date(),
+  description: z.string().max(3000),
+  image_url: z.string().max(5000),
 });
 
 function EventsForm() {
@@ -27,6 +29,7 @@ function EventsForm() {
       location: "",
       startDateTime: new Date(),
       endDateTime: new Date(),
+      description: "",
     },
   });
 
@@ -61,6 +64,11 @@ function EventsForm() {
         <TextareaField
           name="description"
           label="Description"
+          control={form.control}
+        />
+        <DropzoneField
+          name="image_url"
+          label="Cover Image"
           control={form.control}
         />
         <Button type="submit">Submit</Button>
