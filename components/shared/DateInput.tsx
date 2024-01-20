@@ -11,6 +11,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "../ui/calendar";
 import { cn } from "@/lib/utils";
+import { TimePicker } from "./TimePicker";
 
 interface DateInputProps {
   name: string;
@@ -55,6 +56,9 @@ function DateInput({ name, label, control }: DateInputProps) {
                 }
                 initialFocus
               />
+              <div className="p-3 border-t border-border">
+                <TimePicker setDate={field.onChange} date={field.value} />
+              </div>
             </PopoverContent>
           </Popover>
           <FormMessage />
