@@ -8,6 +8,7 @@ import { Form } from "@/components/ui/form";
 
 import TextInput from "./TextInput";
 import DateInput from "./DateInput";
+import { TimePicker } from "./TimePicker";
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
@@ -39,8 +40,23 @@ function EventsForm() {
       >
         <TextInput name="title" label="Title" control={form.control} />
         <TextInput name="location" label="Location" control={form.control} />
-        <DateInput name="startDateTime" label="Start" control={form.control} />
-        <DateInput name="endDateTime" label="End" control={form.control} />
+
+        <div className="flex flex-col md:flex-row gap-4">
+          <DateInput
+            name="startDate"
+            label="Start Date"
+            control={form.control}
+          />
+          <TimePicker
+            name="startTime"
+            label="Start Time"
+            control={form.control}
+          />
+        </div>
+        <div className="flex flex-col md:flex-row gap-4">
+          <DateInput name="endDate" label="End Date" control={form.control} />
+          <TimePicker name="endTime" label="End Time" control={form.control} />
+        </div>
         <Button type="submit">Submit</Button>
       </form>
     </Form>

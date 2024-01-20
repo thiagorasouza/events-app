@@ -25,7 +25,7 @@ function DateInput({ name, label, control }: DateInputProps) {
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className="flex flex-col gap-2">
+        <FormItem className="flex flex-col gap-2 flex-1">
           <FormLabel>{label}</FormLabel>
           <Popover>
             <PopoverTrigger asChild>
@@ -56,9 +56,6 @@ function DateInput({ name, label, control }: DateInputProps) {
                 }
                 initialFocus
               />
-              <div className="p-3 border-t border-border">
-                <TimePicker setDate={field.onChange} date={field.value} />
-              </div>
             </PopoverContent>
           </Popover>
           <FormMessage />

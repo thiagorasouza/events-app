@@ -6,59 +6,59 @@ import * as React from "react";
 import { Clock } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { TimePickerInput } from "./TimePickerInput";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
 
 interface TimePickerProps {
-  date: Date | undefined;
-  setDate: (date: Date | undefined) => void;
+  label: string;
+  name: string;
+  control: any;
 }
 
-export function TimePicker({ date, setDate }: TimePickerProps) {
+export function TimePicker({ label, name, control }: TimePickerProps) {
   const minuteRef = React.useRef<HTMLInputElement>(null);
   const hourRef = React.useRef<HTMLInputElement>(null);
-  const secondRef = React.useRef<HTMLInputElement>(null);
 
   return (
-    <div className="flex items-end gap-2">
-      <div className="grid gap-1 text-center">
-        <Label htmlFor="hours" className="text-xs">
-          Hours
-        </Label>
-        <TimePickerInput
-          picker="hours"
-          date={date}
-          setDate={setDate}
-          ref={hourRef}
-          onRightFocus={() => minuteRef.current?.focus()}
-        />
-      </div>
-      <div className="grid gap-1 text-center">
-        <Label htmlFor="minutes" className="text-xs">
-          Minutes
-        </Label>
-        <TimePickerInput
-          picker="minutes"
-          date={date}
-          setDate={setDate}
-          ref={minuteRef}
-          onLeftFocus={() => hourRef.current?.focus()}
-          onRightFocus={() => secondRef.current?.focus()}
-        />
-      </div>
-      <div className="grid gap-1 text-center">
-        <Label htmlFor="seconds" className="text-xs">
-          Seconds
-        </Label>
-        <TimePickerInput
-          picker="seconds"
-          date={date}
-          setDate={setDate}
-          ref={secondRef}
-          onLeftFocus={() => minuteRef.current?.focus()}
-        />
-      </div>
-      <div className="flex h-10 items-center">
-        <Clock className="ml-2 h-4 w-4" />
-      </div>
-    </div>
+    <FormField
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <FormItem className="flex flex-col gap-2">
+          <FormLabel>{label}</FormLabel>
+          <FormControl>
+            <div className="flex items-center gap-2 bg-white rounded-md">
+              <TimePickerInput
+                className="border-none"
+                aria-label="hours"
+                picker="hours"
+                date={field.value}
+                setDate={field.onChange}
+                ref={hourRef}
+                onRightFocus={() => minuteRef.current?.focus()}
+              />
+              <span className="text-sm mb-[1px]">:</span>
+
+              <TimePickerInput
+                className="border-none"
+                aria-label="minutes"
+                picker="minutes"
+                date={field.value}
+                setDate={field.onChange}
+                ref={minuteRef}
+                onLeftFocus={() => hourRef.current?.focus()}
+              />
+              <Clock className="ml-2 mr-4 h-4 w-4 opacity-50" />
+            </div>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
   );
 }
