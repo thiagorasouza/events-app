@@ -35,7 +35,8 @@ An events app to join expat events in Lisbon in one place.
 - [x] Check for layout breaking on mobile
 - [x] Implement title field
 - [x] Implement location field
-- [ ] Implement startDateTime field
+- [x] Implement startDateTime field
+- [x] Implement endDateTime field
 - [ ] Implement description field
 - [ ] Implement upload image field
 

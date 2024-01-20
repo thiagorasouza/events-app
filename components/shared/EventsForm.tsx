@@ -5,10 +5,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { Textarea } from "@/components/ui/textarea";
 
 import TextInput from "./TextInput";
 import DateInput from "./DateInput";
 import { TimePicker } from "./TimePicker";
+import TextareaField from "./TextareaField";
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
@@ -40,7 +42,6 @@ function EventsForm() {
       >
         <TextInput name="title" label="Title" control={form.control} />
         <TextInput name="location" label="Location" control={form.control} />
-
         <div className="flex flex-col md:flex-row gap-4">
           <DateInput
             name="startDate"
@@ -57,6 +58,11 @@ function EventsForm() {
           <DateInput name="endDate" label="End Date" control={form.control} />
           <TimePicker name="endTime" label="End Time" control={form.control} />
         </div>
+        <TextareaField
+          name="description"
+          label="Description"
+          control={form.control}
+        />
         <Button type="submit">Submit</Button>
       </form>
     </Form>
