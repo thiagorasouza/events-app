@@ -10,16 +10,17 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "../ui/calendar";
-import { cn } from "@/lib/utils";
-import { TimePicker } from "./TimePicker";
+import { KeyOfType, cn } from "@/lib/utils";
+import { FormSchema } from "@/lib/events-form-schema";
+import { Control } from "react-hook-form";
 
-interface DateInputProps {
-  name: string;
+interface DateFieldProps {
+  name: KeyOfType<FormSchema, Date>;
   label: string;
-  control: any;
+  control: Control<FormSchema>;
 }
 
-function DateInput({ name, label, control }: DateInputProps) {
+function DateField({ name, label, control }: DateFieldProps) {
   return (
     <FormField
       control={control}
@@ -65,4 +66,4 @@ function DateInput({ name, label, control }: DateInputProps) {
   );
 }
 
-export default DateInput;
+export default DateField;

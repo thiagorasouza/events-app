@@ -1,80 +1,43 @@
 "use client";
 
-import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
+import { FormSchema, formSchema } from "@/lib/events-form-schema";
+import TextField from "./TextField";
+import DateField from "./DateField";
 
-import TextInput from "./TextInput";
-import DateInput from "./DateInput";
-import { TimePicker } from "./TimePicker";
-import TextareaField from "./TextareaField";
-import DropzoneField from "./DropZoneField";
-
-const formSchema = z.object({
-  title: z.string().min(2).max(50),
-  location: z.string().min(2).max(50),
-  startDateTime: z.date(),
-  endDateTime: z.date(),
-  description: z.string().max(3000),
-  // image_url: z.string().max(5000),
-});
-
-function EventsForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
+export function EventsForm() {
+  // 1. Define your form.
+  const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       location: "",
       startDateTime: new Date(),
-      endDateTime: new Date(),
-      description: "",
     },
   });
 
+  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
     console.log(values);
   }
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-4"
-      >
-        <TextInput name="title" label="Title" control={form.control} />
-        <TextInput name="location" label="Location" control={form.control} />
-        <div className="flex flex-col md:flex-row gap-4">
-          <DateInput
-            name="startDateTime"
-            label="Start Date"
-            control={form.control}
-          />
-          <TimePicker
-            name="startTime"
-            label="Start Time"
-            control={form.control}
-          />
-        </div>
-        <div className="flex flex-col md:flex-row gap-4">
-          <DateInput
-            name="endDateTime"
-            label="End Date"
-            control={form.control}
-          />
-          <TimePicker name="endTime" label="End Time" control={form.control} />
-        </div>
-        <TextareaField
-          name="description"
-          label="Description"
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <TextField name="title" label="Title" control={form.control} />
+        <TextField name="location" label="Location" control={form.control} />
+        <DateField
+          name="startDateTime"
+          label="Start Date"
           control={form.control}
         />
-        {/* <DropzoneField
-          name="image_url"
-          label="Cover Image"
-          control={form.control}
-        /> */}
         <Button type="submit">Submit</Button>
       </form>
     </Form>
