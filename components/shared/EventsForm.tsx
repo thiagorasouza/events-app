@@ -18,7 +18,7 @@ const formSchema = z.object({
   startDateTime: z.date(),
   endDateTime: z.date(),
   description: z.string().max(3000),
-  image_url: z.string().max(5000),
+  // image_url: z.string().max(5000),
 });
 
 function EventsForm() {
@@ -47,7 +47,7 @@ function EventsForm() {
         <TextInput name="location" label="Location" control={form.control} />
         <div className="flex flex-col md:flex-row gap-4">
           <DateInput
-            name="startDate"
+            name="startDateTime"
             label="Start Date"
             control={form.control}
           />
@@ -58,7 +58,11 @@ function EventsForm() {
           />
         </div>
         <div className="flex flex-col md:flex-row gap-4">
-          <DateInput name="endDate" label="End Date" control={form.control} />
+          <DateInput
+            name="endDateTime"
+            label="End Date"
+            control={form.control}
+          />
           <TimePicker name="endTime" label="End Time" control={form.control} />
         </div>
         <TextareaField
@@ -66,11 +70,11 @@ function EventsForm() {
           label="Description"
           control={form.control}
         />
-        <DropzoneField
+        {/* <DropzoneField
           name="image_url"
           label="Cover Image"
           control={form.control}
-        />
+        /> */}
         <Button type="submit">Submit</Button>
       </form>
     </Form>
