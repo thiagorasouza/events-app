@@ -12,12 +12,17 @@ import DateTimeField from "./DateTimeField";
 
 export function EventsForm() {
   // 1. Define your form.
+  const date = new Date();
+  const startDefault = new Date(date.setDate(date.getDate() + 1));
+  const endDefault = new Date(date.setDate(date.getDate() + 1));
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       location: "",
-      startDateTime: new Date(),
+      startDateTime: startDefault,
+      endDateTime: endDefault,
     },
   });
 
@@ -36,6 +41,11 @@ export function EventsForm() {
         <DateTimeField
           name="startDateTime"
           label="Start Date"
+          control={form.control}
+        />
+        <DateTimeField
+          name="endDateTime"
+          label="End Date"
           control={form.control}
         />
         <Button type="submit">Submit</Button>
