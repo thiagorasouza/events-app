@@ -6,11 +6,14 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
+import { FormSchema } from "@/lib/events-form-schema";
+import { Control } from "react-hook-form";
+import { KeyOfType } from "@/lib/utils";
 
 interface DropzoneFieldProps {
   label: string;
-  name: string;
-  control: any;
+  name: KeyOfType<FormSchema, String>;
+  control: Control<FormSchema>;
 }
 
 function DropzoneField({ label, name, control }: DropzoneFieldProps) {
