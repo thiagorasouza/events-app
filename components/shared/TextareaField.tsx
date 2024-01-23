@@ -1,3 +1,4 @@
+import { FormSchema } from "@/lib/events-form-schema";
 import {
   FormControl,
   FormField,
@@ -6,11 +7,13 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Textarea } from "../ui/textarea";
+import { Control } from "react-hook-form";
+import { KeyOfType } from "@/lib/utils";
 
 interface TextareaFieldProps {
   label: string;
-  name: string;
-  control: any;
+  name: KeyOfType<FormSchema, String>;
+  control: Control<FormSchema>;
 }
 
 function TextareaField({ label, name, control }: TextareaFieldProps) {
