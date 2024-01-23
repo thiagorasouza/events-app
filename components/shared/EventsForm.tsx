@@ -10,6 +10,7 @@ import { FormSchema, formSchema } from "@/lib/events-form-schema";
 import TextField from "./TextField";
 import DateTimeField from "./DateTimeField";
 import TextareaField from "./TextareaField";
+import SelectField from "./SelectField";
 
 export function EventsForm() {
   // 1. Define your form.
@@ -26,6 +27,7 @@ export function EventsForm() {
       endDateTime: endDefault,
       description: "",
       external_url: "",
+      categoryId: "",
     },
   });
 
@@ -63,6 +65,11 @@ export function EventsForm() {
         <TextField
           name="external_url"
           label="External URL"
+          control={form.control}
+        />
+        <SelectField
+          name="categoryId"
+          label="Category"
           control={form.control}
         />
         <Button type="submit">Submit</Button>

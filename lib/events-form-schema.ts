@@ -8,8 +8,8 @@ export const formSchema = z.object({
   description: z.string(),
   external_url: z.string(),
   image_url: z.string(),
-  categoryId: z.number(),
-  organizerId: z.number(),
+  categoryId: z.string(),
+  organizerId: z.string(),
 });
 
 export type FormSchema = z.infer<typeof formSchema>;
