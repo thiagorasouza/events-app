@@ -9,6 +9,7 @@ import { Form } from "@/components/ui/form";
 import { FormSchema, formSchema } from "@/lib/events-form-schema";
 import TextField from "./TextField";
 import DateTimeField from "./DateTimeField";
+import TextareaField from "./TextareaField";
 
 export function EventsForm() {
   // 1. Define your form.
@@ -23,6 +24,7 @@ export function EventsForm() {
       location: "",
       startDateTime: startDefault,
       endDateTime: endDefault,
+      description: "",
     },
   });
 
@@ -46,6 +48,11 @@ export function EventsForm() {
         <DateTimeField
           name="endDateTime"
           label="End Date"
+          control={form.control}
+        />
+        <TextareaField
+          name="description"
+          label="Description"
           control={form.control}
         />
         <Button type="submit">Submit</Button>
