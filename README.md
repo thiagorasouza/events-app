@@ -41,6 +41,8 @@ An events app to join expat events in Lisbon in one place.
 - [x] Implement upload image field
 - [x] Make fields typesafe
 - [x] Unite Date and Time fields
+- [x] Implement category field
+- [x] Error handling for category field
 - [ ] Check data and form submission
 
 ## :wrench: Credits
