@@ -25,6 +25,7 @@ export function EventsForm() {
       startDateTime: startDefault,
       endDateTime: endDefault,
       description: "",
+      external_url: "",
     },
   });
 
@@ -37,9 +38,13 @@ export function EventsForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-5"
+      >
         <TextField name="title" label="Title" control={form.control} />
         <TextField name="location" label="Location" control={form.control} />
+
         <DateTimeField
           name="startDateTime"
           label="Start Date"
@@ -53,6 +58,11 @@ export function EventsForm() {
         <TextareaField
           name="description"
           label="Description"
+          control={form.control}
+        />
+        <TextField
+          name="external_url"
+          label="External URL"
           control={form.control}
         />
         <Button type="submit">Submit</Button>

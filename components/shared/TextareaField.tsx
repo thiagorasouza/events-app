@@ -22,7 +22,7 @@ function TextareaField({ label, name, control }: TextareaFieldProps) {
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className="flex flex-col gap-2">
+        <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <Textarea

@@ -6,6 +6,10 @@ export const formSchema = z.object({
   startDateTime: z.date(),
   endDateTime: z.date(),
   description: z.string(),
+  external_url: z.string(),
+  image_url: z.string(),
+  categoryId: z.number(),
+  organizerId: z.number(),
 });
 
 export type FormSchema = z.infer<typeof formSchema>;
