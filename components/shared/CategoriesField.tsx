@@ -17,9 +17,8 @@ import { Control } from "react-hook-form";
 import { KeyOfType } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { getAllCategories } from "@/lib/actions/categories.actions";
-import { differenceInISOWeekYears } from "date-fns";
 
-type SelectFieldProps = {
+type CategoriesFieldProps = {
   name: KeyOfType<FormSchema, String>;
   label: string;
   control: Control<FormSchema>;
@@ -30,7 +29,7 @@ type Category = {
   name: string;
 };
 
-function SelectField({ name, label, control }: SelectFieldProps) {
+function CategoriesField({ name, label, control }: CategoriesFieldProps) {
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -78,4 +77,4 @@ function SelectField({ name, label, control }: SelectFieldProps) {
   );
 }
 
-export default SelectField;
+export default CategoriesField;
