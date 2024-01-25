@@ -11,8 +11,9 @@ import TextField from "./TextField";
 import DateTimeField from "./DateTimeField";
 import TextareaField from "./TextareaField";
 import CategoriesField from "./CategoriesField";
+import React from "react";
 
-export function EventsForm() {
+export function EventsForm({ categories }: { categories: React.ReactNode }) {
   // 1. Define your form.
   const date = new Date();
   const startDefault = new Date(date.setDate(date.getDate() + 1));
@@ -71,7 +72,9 @@ export function EventsForm() {
           name="categoryId"
           label="Category"
           control={form.control}
-        />
+        >
+          {categories}
+        </CategoriesField>
         <Button type="submit">Submit</Button>
       </form>
     </Form>

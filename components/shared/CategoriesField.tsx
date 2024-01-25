@@ -1,7 +1,6 @@
 import {
   Select,
   SelectContent,
-  SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -15,34 +14,21 @@ import {
 import { FormSchema } from "@/lib/events-form-schema";
 import { Control } from "react-hook-form";
 import { KeyOfType } from "@/lib/utils";
-import { useEffect, useState } from "react";
-import { getAllCategories } from "@/lib/actions/categories.actions";
+import React from "react";
 
 type CategoriesFieldProps = {
   name: KeyOfType<FormSchema, String>;
   label: string;
   control: Control<FormSchema>;
+  children: React.ReactNode;
 };
 
-type Category = {
-  id: string;
-  name: string;
-};
-
-function CategoriesField({ name, label, control }: CategoriesFieldProps) {
-  const [categories, setCategories] = useState<Category[]>([]);
-
-  useEffect(() => {
-    getAllCategories().then((result) =>
-      setCategories(
-        result.map((category) => ({
-          id: category.id.toString(),
-          name: category.name,
-        })),
-      ),
-    );
-  }, []);
-
+function CategoriesField({
+  name,
+  label,
+  control,
+  children,
+}: CategoriesFieldProps) {
   return (
     <FormField
       control={control}
@@ -56,19 +42,7 @@ function CategoriesField({ name, label, control }: CategoriesFieldProps) {
                 <SelectValue placeholder="Select a verified email to display" />
               </SelectTrigger>
             </FormControl>
-            <SelectContent>
-              {categories.length > 0 ? (
-                categories.map((category) => (
-                  <SelectItem key={category.id} value={category.id}>
-                    {category.name}
-                  </SelectItem>
-                ))
-              ) : (
-                <SelectItem value="0" disabled>
-                  Loading...
-                </SelectItem>
-              )}
-            </SelectContent>
+            <SelectContent>{children}</SelectContent>
           </Select>
           <FormMessage />
         </FormItem>
