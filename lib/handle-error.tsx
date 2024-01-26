@@ -1,12 +1,7 @@
-interface ServerError {
-  statusCode: number;
-  message: string;
-}
-
-export const handleError = (serverError: ServerError) => {
+export const handleError = (error: Error) => {
   return (
     <>
-      <h1>{serverError.message}</h1>
+      <h1>{error.message}</h1>
     </>
   );
 };
