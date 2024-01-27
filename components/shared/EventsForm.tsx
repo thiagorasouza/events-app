@@ -12,9 +12,9 @@ import DateTimeField from "./DateTimeField";
 import TextareaField from "./TextareaField";
 import CategoriesField from "./CategoriesField";
 import React from "react";
+import OrganizerField from "./OrganizerField";
 
 export function EventsForm({ categories }: { categories: React.ReactNode }) {
-  // 1. Define your form.
   const date = new Date();
   const startDefault = new Date(date.setDate(date.getDate() + 1));
   const endDefault = new Date(date.setDate(date.getDate() + 1));
@@ -28,14 +28,13 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
       endDateTime: endDefault,
       description: "",
       external_url: "",
+      // image_url: "",
       categoryId: "",
+      organizerId: "",
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
   }
 
@@ -68,6 +67,7 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
           label="External URL"
           control={form.control}
         />
+        {/* <TextField name="image_url" label="Image URL" control={form.control} /> */}
         <CategoriesField
           name="categoryId"
           label="Category"
@@ -75,6 +75,7 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
         >
           {categories}
         </CategoriesField>
+        <OrganizerField />
         <Button type="submit">Submit</Button>
       </form>
     </Form>

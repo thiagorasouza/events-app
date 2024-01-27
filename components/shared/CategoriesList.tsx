@@ -11,10 +11,7 @@ async function CategoriesList() {
   try {
     categories = await getAllCategories();
   } catch (error) {
-    return handleError({
-      statusCode: 500,
-      message: "Internal Server Error",
-    });
+    return handleError(error as Error);
   }
 
   return (
