@@ -1,3 +1,5 @@
+"use client";
+
 import { UploadDropzone } from "@/lib/uploadthing";
 import {
   FormControl,
@@ -22,7 +24,7 @@ function DropzoneField({ label, name, control }: DropzoneFieldProps) {
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem className="flex flex-col gap-2">
+        <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <UploadDropzone

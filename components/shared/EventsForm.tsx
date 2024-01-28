@@ -13,6 +13,8 @@ import TextareaField from "./TextareaField";
 import CategoriesField from "./CategoriesField";
 import React from "react";
 import OrganizerField from "./OrganizerField";
+import DropzoneField from "./DropzoneField";
+import { UploadButton } from "@/lib/uploadthing";
 
 export function EventsForm({ categories }: { categories: React.ReactNode }) {
   const date = new Date();
@@ -67,7 +69,6 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
           label="External URL"
           control={form.control}
         />
-        {/* <TextField name="image_url" label="Image URL" control={form.control} /> */}
         <CategoriesField
           name="categoryId"
           label="Category"
@@ -76,6 +77,12 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
           {categories}
         </CategoriesField>
         <OrganizerField />
+
+        <DropzoneField
+          name="image_url"
+          label="Banner Image"
+          control={form.control}
+        />
         <Button type="submit">Submit</Button>
       </form>
     </Form>
