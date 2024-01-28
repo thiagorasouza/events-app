@@ -14,7 +14,6 @@ import CategoriesField from "./CategoriesField";
 import React from "react";
 import OrganizerField from "./OrganizerField";
 import DropzoneField from "./DropzoneField";
-import { UploadButton } from "@/lib/uploadthing";
 
 export function EventsForm({ categories }: { categories: React.ReactNode }) {
   const date = new Date();
@@ -30,7 +29,7 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
       endDateTime: endDefault,
       description: "",
       external_url: "",
-      // image_url: "",
+      image_url: "",
       categoryId: "",
       organizerId: "",
     },
@@ -77,12 +76,7 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
           {categories}
         </CategoriesField>
         <OrganizerField />
-
-        <DropzoneField
-          name="image_url"
-          label="Banner Image"
-          control={form.control}
-        />
+        <DropzoneField name="image_url" label="Banner Image" form={form} />
         <Button type="submit">Submit</Button>
       </form>
     </Form>

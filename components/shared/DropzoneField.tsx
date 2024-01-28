@@ -9,19 +9,21 @@ import {
   FormMessage,
 } from "../ui/form";
 import { FormSchema } from "@/lib/events-form-schema";
-import { Control } from "react-hook-form";
+import { UseFormReturn } from "react-hook-form";
 import { KeyOfType } from "@/lib/utils";
 
 interface DropzoneFieldProps {
   label: string;
   name: KeyOfType<FormSchema, String>;
-  control: Control<FormSchema>;
+  form: UseFormReturn<FormSchema>;
 }
 
-function DropzoneField({ label, name, control }: DropzoneFieldProps) {
+function DropzoneField({ label, name, form }: DropzoneFieldProps) {
+  const { setError } = form;
+
   return (
     <FormField
-      control={control}
+      control={form.control}
       name={name}
       render={({ field }) => (
         <FormItem>
@@ -30,16 +32,14 @@ function DropzoneField({ label, name, control }: DropzoneFieldProps) {
             <UploadDropzone
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
-                // Do something with the response
-                console.log("Files: ", res);
-                alert("Upload Completed");
+                const fileURL = res[0].url;
+                field.onChange(fileURL);
               }}
               onUploadError={(error: Error) => {
-                alert(`ERROR! ${error.message}`);
-              }}
-              onUploadBegin={(name) => {
-                // Do something once upload begins
-                console.log("Uploading: ", name);
+                setError("image_url", {
+                  type: "custom",
+                  message: "Unable to upload banner image",
+                });
               }}
             />
           </FormControl>
