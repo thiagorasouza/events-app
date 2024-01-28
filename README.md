@@ -43,8 +43,6 @@ An events app to join expat events in Lisbon in one place.
 - [x] Unite Date and Time fields
 - [x] Implement category field
 - [x] Error handling for category field
-- [ ] Implement test for category field
-- [ ] Implement tests for the EventsForm as a whole
 - [ ] Check data and form submission
 
 ## :wrench: Credits
