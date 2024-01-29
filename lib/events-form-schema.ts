@@ -9,7 +9,6 @@ export const formSchema = z.object({
   external_url: z.string(),
   image_url: z.string(),
   categoryId: z.string(),
-  organizerId: z.string(),
 });
 
 export type FormSchema = z.infer<typeof formSchema>;

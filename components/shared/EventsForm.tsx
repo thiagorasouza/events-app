@@ -31,7 +31,6 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
       external_url: "",
       image_url: "",
       categoryId: "",
-      organizerId: "",
     },
   });
 
