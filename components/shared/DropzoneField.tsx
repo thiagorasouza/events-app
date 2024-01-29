@@ -11,6 +11,7 @@ import {
 import { FormSchema } from "@/lib/events-form-schema";
 import { UseFormReturn } from "react-hook-form";
 import { KeyOfType } from "@/lib/utils";
+import Image from "next/image";
 
 interface DropzoneFieldProps {
   label: string;
@@ -28,21 +29,46 @@ function DropzoneField({ label, name, form }: DropzoneFieldProps) {
       render={({ field }) => (
         <FormItem>
           <FormLabel>{label}</FormLabel>
-          <FormControl>
-            <UploadDropzone
-              endpoint="imageUploader"
-              onClientUploadComplete={(res) => {
-                const fileURL = res[0].url;
-                field.onChange(fileURL);
-              }}
-              onUploadError={(error: Error) => {
-                setError("image_url", {
-                  type: "custom",
-                  message: "Unable to upload banner image",
-                });
-              }}
-            />
-          </FormControl>
+          {field.value !== "" ? (
+            <div className="mt-2 relative border border-dashed border-gray-900/25 rounded-md overflow-hidden">
+              <Image
+                src={field.value}
+                alt="uploaded event banner"
+                width={256}
+                height={256}
+                quality={100}
+                className="w-full object-cover object-center"
+              />
+              <button
+                className="
+                absolute right-4 top-3
+                text-sm font-medium
+                p-2 border-[1px] border-dashed border-gray-500 rounded-md
+                bg-white bg-opacity-50
+              "
+                onClick={() => field.onChange("")}
+              >
+                Clear
+              </button>
+            </div>
+          ) : (
+            <FormControl>
+              <UploadDropzone
+                endpoint="imageUploader"
+                onClientUploadComplete={(res) => {
+                  const fileURL = res[0].url;
+                  field.onChange(fileURL);
+                  console.log(field.value);
+                }}
+                onUploadError={(error: Error) => {
+                  setError("image_url", {
+                    type: "custom",
+                    message: "Unable to upload banner image",
+                  });
+                }}
+              />
+            </FormControl>
+          )}
           <FormMessage />
         </FormItem>
       )}
