@@ -43,7 +43,8 @@ An events app to join expat events in Lisbon in one place.
 - [x] Unite Date and Time fields
 - [x] Implement category field
 - [x] Error handling for category field
-- [ ] Check data and form submission
+- [ ] Install cypress dependencies in docker image
+- [ ] Test data and form submission
 
 ## :wrench: Credits
 
