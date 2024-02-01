@@ -57,7 +57,9 @@ Cypress.Commands.add(`signOut`, () => {
 
 Cypress.Commands.add(`signIn`, () => {
   cy.log(`Signing in.`);
-  cy.visit(`/`);
+  cy.visit(`/sign-in`, {
+    failOnStatusCode: false,
+  });
 
   cy.window()
     .should((window) => {
