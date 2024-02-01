@@ -11,7 +11,12 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { CalendarIcon, Clock } from "lucide-react";
 import { Calendar } from "../ui/calendar";
 import { KeyOfType, cn } from "@/lib/utils";
-import { FormSchema } from "@/lib/events-form-schema";
+import {
+  FormSchema,
+  formSchema,
+  maxDate,
+  minDate,
+} from "@/lib/events-form-schema";
 import { Control } from "react-hook-form";
 import { TimePickerInput } from "./TimePickerInput";
 import { useRef, useState } from "react";
@@ -65,9 +70,7 @@ function DateTimeField({ name, label, control }: DateFieldProps) {
                         date?.setMinutes(minutes);
                         return field.onChange(date, ...args);
                       }}
-                      disabled={(date) =>
-                        date > new Date() || date < new Date("1900-01-01")
-                      }
+                      disabled={(date) => date < minDate || date > maxDate}
                       initialFocus
                     />
                   </PopoverContent>

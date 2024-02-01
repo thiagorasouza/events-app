@@ -1,14 +1,17 @@
 import * as z from "zod";
 
-const now = new Date();
-const oneYearAhead = new Date(new Date().getFullYear() + 1);
+export const minDate = new Date();
+// one year ahead
+export const maxDate = new Date(
+  new Date().setFullYear(new Date().getFullYear() + 1),
+);
 
 export const formSchema = z.object({
   title: z.string().min(3).max(100),
   location: z.string().min(3).max(200),
-  startDateTime: z.date().min(now).max(oneYearAhead),
-  endDateTime: z.date().min(now).max(oneYearAhead),
-  description: z.string().max(10000),
+  startDateTime: z.date().min(minDate).max(maxDate),
+  endDateTime: z.date().min(minDate).max(maxDate),
+  description: z.string().min(3).max(10000),
   external_url: z.string().url(),
   image_url: z.string().url(),
   categoryId: z.string(),
