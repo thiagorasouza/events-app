@@ -30,7 +30,7 @@ function DropzoneField({ label, name, form }: DropzoneFieldProps) {
         <FormItem>
           <FormLabel>{label}</FormLabel>
           {field.value !== "" ? (
-            <div className="mt-2 relative border border-dashed border-gray-900/25 rounded-md overflow-hidden">
+            <div className="mt-0 relative border border-dashed border-gray-900/25 rounded-md overflow-hidden">
               <Image
                 src={field.value}
                 alt="uploaded event banner"
@@ -52,7 +52,7 @@ function DropzoneField({ label, name, form }: DropzoneFieldProps) {
               </button>
             </div>
           ) : (
-            <FormControl>
+            <FormControl className="mt-0">
               <UploadDropzone
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
