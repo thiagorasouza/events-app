@@ -10,6 +10,8 @@ import {
   FormSchema,
   formDefaultValues,
   formSchema,
+  maxDate,
+  minDate,
 } from "@/lib/events-form-schema";
 import TextField from "./TextField";
 import DateTimeField from "./DateTimeField";
@@ -43,11 +45,15 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
           name="startDateTime"
           label="Start Date"
           control={form.control}
+          minDate={minDate}
+          maxDate={maxDate}
         />
         <DateTimeField
           name="endDateTime"
           label="End Date"
           control={form.control}
+          minDate={minDate}
+          maxDate={maxDate}
         />
         <TextareaField
           name="description"

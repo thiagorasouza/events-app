@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, startOfDay } from "date-fns";
 import { Button } from "../ui/button";
 import {
   FormControl,
@@ -11,25 +11,29 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { CalendarIcon, Clock } from "lucide-react";
 import { Calendar } from "../ui/calendar";
 import { KeyOfType, cn } from "@/lib/utils";
-import {
-  FormSchema,
-  formSchema,
-  maxDate,
-  minDate,
-} from "@/lib/events-form-schema";
+import { FormSchema } from "@/lib/events-form-schema";
 import { Control } from "react-hook-form";
 import { TimePickerInput } from "./TimePickerInput";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 interface DateFieldProps {
   name: KeyOfType<FormSchema, Date>;
   label: string;
   control: Control<FormSchema>;
+  minDate: Date;
+  maxDate: Date;
 }
 
-function DateTimeField({ name, label, control }: DateFieldProps) {
+function DateTimeField({
+  name,
+  label,
+  control,
+  minDate,
+  maxDate,
+}: DateFieldProps) {
   const minuteRef = useRef<HTMLInputElement>(null);
   const hourRef = useRef<HTMLInputElement>(null);
+
   return (
     <>
       <FormField
