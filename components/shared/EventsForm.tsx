@@ -6,7 +6,11 @@ import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { FormSchema, formSchema } from "@/lib/events-form-schema";
+import {
+  FormSchema,
+  formDefaultValues,
+  formSchema,
+} from "@/lib/events-form-schema";
 import TextField from "./TextField";
 import DateTimeField from "./DateTimeField";
 import TextareaField from "./TextareaField";
@@ -16,26 +20,14 @@ import OrganizerField from "./OrganizerField";
 import DropzoneField from "./DropzoneField";
 
 export function EventsForm({ categories }: { categories: React.ReactNode }) {
-  const date = new Date();
-  const startDefault = new Date(date.setDate(date.getDate() + 1));
-  const endDefault = new Date(date.setDate(date.getDate() + 1));
-
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
-      location: "",
-      startDateTime: startDefault,
-      endDateTime: endDefault,
-      description: "",
-      external_url: "",
-      image_url: "",
-      categoryId: "",
-    },
+    defaultValues: formDefaultValues,
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    const validation = formSchema.parse(values);
+    console.log("🚀 ~ validation:", validation);
   }
 
   return (
