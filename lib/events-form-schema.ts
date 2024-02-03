@@ -19,14 +19,15 @@ const tomorrow = add(new Date(), { days: 1 });
 const dayAfterTomorrow = add(new Date(), { days: 2 });
 
 export const formDefaultValues = {
-  title: "",
-  location: "",
+  title: "My Test Event",
+  location: "Default Location, Lisbon, Portugal",
   startDateTime: tomorrow,
   endDateTime: dayAfterTomorrow,
-  description: "",
-  external_url: "",
-  image_url: "",
-  categoryId: "",
+  description: "Event Description",
+  external_url: "https://www.google.com",
+  image_url:
+    "https://utfs.io/f/72e13911-1f65-47e4-a66b-fa5bd9ff9ad1-6g5uno.jpg",
+  categoryId: "1",
 };
 
 export type FormSchema = z.infer<typeof formSchema>;
