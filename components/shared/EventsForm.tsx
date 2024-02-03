@@ -17,20 +17,25 @@ import TextField from "./TextField";
 import DateTimeField from "./DateTimeField";
 import TextareaField from "./TextareaField";
 import CategoriesField from "./CategoriesField";
-import React from "react";
+import React, { useState } from "react";
 import OrganizerField from "./OrganizerField";
 import DropzoneField from "./DropzoneField";
+import { createEvent } from "@/lib/actions/events.actions";
 
 export function EventsForm({ categories }: { categories: React.ReactNode }) {
+  const [error, setError] = useState<string>("");
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: formDefaultValues,
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // values.description = "";
-    const validation = formSchema.parse(values);
-    console.log("🚀 ~ validation:", validation);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const response = await createEvent(values);
+    if (response?.statusCode === "422") {
+      setError("");
+    } else {
+    }
   }
 
   return (
@@ -39,6 +44,7 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-5"
       >
+        <p></p>
         <TextField name="title" label="Title" control={form.control} />
         <TextField name="location" label="Location" control={form.control} />
 
