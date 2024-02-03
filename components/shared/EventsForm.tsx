@@ -28,6 +28,7 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    // values.description = "";
     const validation = formSchema.parse(values);
     console.log("🚀 ~ validation:", validation);
   }
