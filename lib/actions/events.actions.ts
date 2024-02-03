@@ -10,18 +10,26 @@ import { auth } from "@clerk/nextjs";
 import { UnauthorizedError } from "../responses/unauthorized-error";
 import { BadRequestError } from "../responses/bad-request-error";
 import { Success } from "../responses/success";
+import { NotFoundError } from "../responses/not-found-error";
 
 const prisma = new PrismaClient();
 
 export async function getEventById(value: string) {
-  const id = parseInt(value);
-  if (isNaN(id)) {
-    return InternalServerError("Event id string should be parsable to an integer");
+  try {
+    const id = parseInt(value);
+    if (isNaN(id)) {
+      return InternalServerError("Event id string should be parsable to an integer");
+    }
+
+    const event = await prisma.event.findFirst({ where: { id } });
+    if (!event) {
+      return NotFoundError("Event id not found");
+    }
+
+    return Success(event);
+  } catch (error) {
+    return InternalServerError(error);
   }
-
-  const event = await prisma.event.findFirst({ where: { id } });
-
-  return Success(event);
 }
 
 export async function createEvent(values: z.infer<typeof formSchema>): Promise<SuccessResponse | ErrorResponse> {
