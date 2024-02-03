@@ -1,4 +1,4 @@
-interface SuccessResponse {
+interface SuccessResponse<DataType> {
   statusCode: 200;
-  data: any;
+  data: DataType;
 }

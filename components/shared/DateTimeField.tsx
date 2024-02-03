@@ -1,12 +1,6 @@
-import { format, startOfDay } from "date-fns";
+import { format } from "date-fns";
 import { Button } from "../ui/button";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { CalendarIcon, Clock } from "lucide-react";
 import { Calendar } from "../ui/calendar";
@@ -24,13 +18,7 @@ interface DateFieldProps {
   maxDate: Date;
 }
 
-function DateTimeField({
-  name,
-  label,
-  control,
-  minDate,
-  maxDate,
-}: DateFieldProps) {
+function DateTimeField({ name, label, control, minDate, maxDate }: DateFieldProps) {
   const minuteRef = useRef<HTMLInputElement>(null);
   const hourRef = useRef<HTMLInputElement>(null);
 
@@ -49,17 +37,10 @@ function DateTimeField({
                     <FormControl>
                       <Button
                         variant={"outline"}
-                        className={cn(
-                          "w-full pl-3 text-left font-normal",
-                          !field.value && "text-muted-foreground",
-                        )}
+                        className={cn("w-full pl-3 text-left font-normal", !field.value && "text-muted-foreground")}
                         suppressHydrationWarning
                       >
-                        {field.value ? (
-                          format(field.value, "PPP")
-                        ) : (
-                          <span>Pick a date</span>
-                        )}
+                        {field.value ? format(field.value, "PPP") : <span>Pick a date</span>}
                         <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                       </Button>
                     </FormControl>
