@@ -13,6 +13,17 @@ import { Success } from "../responses/success";
 
 const prisma = new PrismaClient();
 
+export async function getEventById(value: string) {
+  const id = parseInt(value);
+  if (isNaN(id)) {
+    return InternalServerError("Event id string should be parsable to an integer");
+  }
+
+  const event = await prisma.event.findFirst({ where: { id } });
+
+  return Success(event);
+}
+
 export async function createEvent(values: z.infer<typeof formSchema>): Promise<SuccessResponse | ErrorResponse> {
   try {
     const { userId: clerkId } = auth();
