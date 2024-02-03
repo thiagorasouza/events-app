@@ -6,13 +6,7 @@ import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import {
-  FormSchema,
-  formDefaultValues,
-  formSchema,
-  maxDate,
-  minDate,
-} from "@/lib/events-form-schema";
+import { FormSchema, formDefaultValues, formSchema, maxDate, minDate } from "@/lib/events-form-schema";
 import TextField from "./TextField";
 import DateTimeField from "./DateTimeField";
 import TextareaField from "./TextareaField";
@@ -32,19 +26,17 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const response = await createEvent(values);
-    if (response?.statusCode === "422") {
-      setError("");
-    } else {
+    console.log("🚀 ~ response:", response);
+
+    if (response?.statusCode !== 200) {
+      setError("Internal server error. Please try again later.");
     }
   }
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-5"
-      >
-        <p></p>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
+        <p>{error}</p>
         <TextField name="title" label="Title" control={form.control} />
         <TextField name="location" label="Location" control={form.control} />
 
@@ -55,28 +47,10 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
           minDate={minDate}
           maxDate={maxDate}
         />
-        <DateTimeField
-          name="endDateTime"
-          label="End Date"
-          control={form.control}
-          minDate={minDate}
-          maxDate={maxDate}
-        />
-        <TextareaField
-          name="description"
-          label="Description"
-          control={form.control}
-        />
-        <TextField
-          name="external_url"
-          label="External URL"
-          control={form.control}
-        />
-        <CategoriesField
-          name="categoryId"
-          label="Category"
-          control={form.control}
-        >
+        <DateTimeField name="endDateTime" label="End Date" control={form.control} minDate={minDate} maxDate={maxDate} />
+        <TextareaField name="description" label="Description" control={form.control} />
+        <TextField name="external_url" label="External URL" control={form.control} />
+        <CategoriesField name="categoryId" label="Category" control={form.control}>
           {categories}
         </CategoriesField>
         <OrganizerField />
