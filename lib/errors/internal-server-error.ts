@@ -1,7 +1,6 @@
-export class InternalServerError extends Error {
-  constructor(error: any) {
-    super("Internal Server Error");
-    this.name = "InternalServerError";
-    console.error(error);
-  }
-}
+import { ErrorResponse } from "../protocols/error-response";
+
+export const InternalServerError = (): ErrorResponse => ({
+  statusCode: 500,
+  error: "InternalServerError",
+});
