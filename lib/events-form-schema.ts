@@ -25,9 +25,8 @@ export const formDefaultValues = {
   endDateTime: dayAfterTomorrow,
   description: "Event Description",
   external_url: "https://www.google.com",
-  image_url:
-    "https://utfs.io/f/72e13911-1f65-47e4-a66b-fa5bd9ff9ad1-6g5uno.jpg",
-  categoryId: "1",
+  image_url: "https://utfs.io/f/72e13911-1f65-47e4-a66b-fa5bd9ff9ad1-6g5uno.jpg",
+  categoryId: "-1",
 };
 
 export type FormSchema = z.infer<typeof formSchema>;

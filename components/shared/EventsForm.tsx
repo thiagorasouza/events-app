@@ -16,7 +16,7 @@ import OrganizerField from "./OrganizerField";
 import DropzoneField from "./DropzoneField";
 import { createEvent } from "@/lib/actions/events.actions";
 
-export function EventsForm({ categories }: { categories: React.ReactNode }) {
+export function EventsForm() {
   const [error, setError] = useState<string>("");
 
   const form = useForm<FormSchema>({
@@ -50,9 +50,7 @@ export function EventsForm({ categories }: { categories: React.ReactNode }) {
         <DateTimeField name="endDateTime" label="End Date" control={form.control} minDate={minDate} maxDate={maxDate} />
         <TextareaField name="description" label="Description" control={form.control} />
         <TextField name="external_url" label="External URL" control={form.control} />
-        <CategoriesField name="categoryId" label="Category" control={form.control}>
-          {categories}
-        </CategoriesField>
+        <CategoriesField name="categoryId" label="Category" control={form.control} />
         <OrganizerField />
         <DropzoneField name="image_url" label="Banner Image" form={form} />
         <Button type="submit">Submit</Button>
