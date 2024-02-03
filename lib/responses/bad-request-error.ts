@@ -1,6 +1,9 @@
 import { ErrorResponse } from "../protocols/error-response";
 
-export const BadRequestError = (): ErrorResponse => ({
-  statusCode: 400,
-  error: "BadRequestError",
-});
+export const BadRequestError = (error: any): ErrorResponse => {
+  console.error(error);
+  return {
+    statusCode: 400,
+    error: "BadRequestError",
+  };
+};

@@ -10,6 +10,6 @@ export async function getAllCategories(): Promise<Category[] | ErrorResponse> {
   try {
     return await prisma.category.findMany({});
   } catch (error) {
-    return InternalServerError();
+    return InternalServerError(error);
   }
 }

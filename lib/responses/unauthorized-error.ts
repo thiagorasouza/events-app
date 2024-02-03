@@ -1,6 +1,9 @@
 import { ErrorResponse } from "../protocols/error-response";
 
-export const UnauthorizedError = (): ErrorResponse => ({
-  statusCode: 401,
-  error: "UnauthorizedError",
-});
+export const UnauthorizedError = (error: any): ErrorResponse => {
+  console.error(error);
+  return {
+    statusCode: 401,
+    error: "UnauthorizedError",
+  };
+};
