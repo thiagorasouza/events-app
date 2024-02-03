@@ -14,7 +14,16 @@ import { NotFoundError } from "../responses/not-found-error";
 
 const prisma = new PrismaClient();
 
-export async function getEventById(value: string): Promise<SuccessResponse<Event> | ErrorResponse> {
+type JoinedEvent = {
+  category: {
+    name: string;
+  };
+  organizer: {
+    name: string | null;
+  };
+} & Event;
+
+export async function getEventById(value: string): Promise<SuccessResponse<JoinedEvent> | ErrorResponse> {
   try {
     const id = parseInt(value);
     if (isNaN(id)) {
