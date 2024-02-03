@@ -9,7 +9,13 @@ async function CategoriesList() {
   let categories: Category[];
 
   try {
-    categories = await getAllCategories();
+    const response = await getAllCategories();
+
+    if (response.statusCode !== 200) {
+      throw new Error("Unable to query categories at this time, please try again later");
+    }
+
+    categories = response.data;
   } catch (error) {
     return handleError(error as Error);
   }

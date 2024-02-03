@@ -1,4 +1,4 @@
 export interface ErrorResponse {
-  statusCode: number;
+  statusCode: 400 | 404 | 401 | 422 | 500;
   error: string;
 }

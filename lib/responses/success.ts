@@ -1,4 +1,4 @@
-export const Success = (message: string): SuccessResponse => ({
+export const Success = (data: any): SuccessResponse => ({
   statusCode: 200,
-  message,
+  data,
 });

@@ -36,7 +36,7 @@ export async function createEvent(values: z.infer<typeof formSchema>): Promise<S
       return BadRequestError("Unable to find categoryId");
     }
 
-    await prisma.event.create({
+    const event = await prisma.event.create({
       data: {
         title: values.title,
         location: values.location,
@@ -50,7 +50,7 @@ export async function createEvent(values: z.infer<typeof formSchema>): Promise<S
       },
     });
 
-    return Success("Event created");
+    return Success(event);
   } catch (error) {
     return InternalServerError(error);
   }

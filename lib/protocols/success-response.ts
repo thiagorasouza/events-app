@@ -1,4 +1,4 @@
 interface SuccessResponse {
-  statusCode: number;
-  message: string;
+  statusCode: 200;
+  data: any;
 }
