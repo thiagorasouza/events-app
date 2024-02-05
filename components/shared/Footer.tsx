@@ -1,8 +1,7 @@
 function Footer() {
   return (
-    <footer className="mt-auto flex flex-col text-center md:flex-row md:justify-between gap-2 ">
+    <footer className="text-center pt-3 pb-4">
       <p>&#169; Events App {new Date().getFullYear()}.</p>
-      <p>This project is under development by Thiago Souza.</p>
     </footer>
   );
 }
