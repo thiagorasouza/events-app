@@ -5,14 +5,13 @@ import { formSchema } from "../events-form-schema";
 import { ValidationError } from "../responses/validation-error";
 import { ErrorResponse } from "../protocols/error-response";
 import { InternalServerError } from "../responses/internal-server-error";
-import { Event, PrismaClient } from "@prisma/client";
+import { Event } from "@prisma/client";
 import { auth } from "@clerk/nextjs";
 import { UnauthorizedError } from "../responses/unauthorized-error";
 import { BadRequestError } from "../responses/bad-request-error";
 import { Success } from "../responses/success";
 import { NotFoundError } from "../responses/not-found-error";
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 type JoinedEvent = {
   category: {

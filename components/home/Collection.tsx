@@ -1,9 +1,7 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/prisma";
 import Image from "next/image";
-
-const prisma = new PrismaClient();
 
 async function Collection() {
   const events = await prisma.event.findMany({
@@ -47,12 +45,8 @@ async function Collection() {
                 />
               </div>
               <div className="flex flex-col p-4 pt-3 min-h-[150px]">
-                <h3 className="text-lg font-bold mb-3 line-clamp-2">
-                  {event.title}
-                </h3>
-                <p className="text-sm font-semibold text-gray-500">
-                  {event.location}
-                </p>
+                <h3 className="text-lg font-bold mb-3 line-clamp-2">{event.title}</h3>
+                <p className="text-sm font-semibold text-gray-500">{event.location}</p>
                 <p className="text-xs text-gray-500">
                   {event.startDateTime.toLocaleDateString("en-us", {
                     day: "numeric",

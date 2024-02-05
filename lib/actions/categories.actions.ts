@@ -1,13 +1,12 @@
 "use server";
 
-import { Category, PrismaClient } from "@prisma/client";
 import { InternalServerError } from "@/lib/responses/internal-server-error";
 import { ErrorResponse } from "../protocols/error-response";
 import { Success } from "../responses/success";
+import { Category } from "@prisma/client";
+import prisma from "@/lib/prisma";
 
-const prisma = new PrismaClient();
-
-export async function getAllCategories(): Promise<SuccessResponse | ErrorResponse> {
+export async function getAllCategories(): Promise<SuccessResponse<Category[]> | ErrorResponse> {
   try {
     const categories = await prisma.category.findMany({});
     if (!categories) {
