@@ -1,9 +1,10 @@
 "use server";
 
 import { getEventById } from "@/lib/actions/events.actions";
-import { Calendar, Clock, ImageIcon, Link, MapPin } from "lucide-react";
+import { Calendar, Clock, ImageIcon, Link as LinkIcon, MapPin } from "lucide-react";
 import Image from "next/image";
 import { formatDateTime, formatTimeDifference } from "@/lib/utils";
+import Link from "next/link";
 
 async function EventDetails({ params }: { params: { id: string } }) {
   const response = await getEventById(params.id);
@@ -68,8 +69,8 @@ async function EventDetails({ params }: { params: { id: string } }) {
       <p className="mb-6">{event.description}</p>
 
       <p className="flex items-center text-sm gap-2 mb-6">
-        <Link size={20} />
-        <span>Lasts for {formatTimeDifference(event.startDateTime, event.endDateTime)}</span>
+        <LinkIcon size={20} />
+        <Link href={event.external_url}>{event.external_url}</Link>
       </p>
 
       <p className="text-right mb-3">by {event.organizer.name}</p>
