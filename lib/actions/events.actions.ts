@@ -20,6 +20,7 @@ type JoinedEvent = {
   };
   organizer: {
     name: string | null;
+    picture_url: string | null;
   };
 } & Event;
 
@@ -36,6 +37,7 @@ export async function getEventById(value: string): Promise<SuccessResponse<Joine
         organizer: {
           select: {
             name: true,
+            picture_url: true,
           },
         },
         category: {
