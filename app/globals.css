@@ -77,6 +77,10 @@
 
 @layer components {
   .container {
-    @apply xl:w-[1000px] xl:mx-auto;
+    @apply xl:mx-auto xl:w-[1000px];
+  }
+
+  .card {
+    @apply overflow-hidden rounded-xl bg-white shadow-sm;
   }
 }

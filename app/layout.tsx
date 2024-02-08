@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={cn("bg-gray-100", inter.className)}>
+        <body className={cn("bg-[#F5F5F5]", inter.className)}>
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
           {children}
         </body>
