@@ -5,6 +5,7 @@ import { Calendar, Clock, ImageIcon, Link as LinkIcon, MapPin } from "lucide-rea
 import Image from "next/image";
 import { formatDateTime, formatTimeDifference } from "@/lib/utils";
 import Link from "next/link";
+import EventDetailsHeader from "@/components/event-details/EventDetailsHeader";
 
 async function EventDetails({ params }: { params: { id: string } }) {
   const response = await getEventById(params.id);
@@ -19,37 +20,14 @@ async function EventDetails({ params }: { params: { id: string } }) {
 
   return (
     <article className="flex flex-col gap-3 px-3 ">
-      <header className="card col-span-4 flex w-full flex-col lg:flex-row">
-        <div className="rounded-xl lg:max-w-[300px]">
-          <Image
-            src={event.image_url}
-            alt="event banner"
-            width={1000}
-            height={1000}
-            className="w-full object-cover object-center shadow-sm"
-          />
-        </div>
-
-        <div className="flex flex-grow flex-col items-start gap-5 p-6">
-          <div>
-            <h1 className="mb-2 text-2xl font-bold leading-none">{event.title}</h1>
-            <p className="flex items-center gap-2 text-sm">
-              <MapPin size={20} /> {event.location}
-            </p>
-          </div>
-          <p className="inline-block rounded-full bg-gray-300 px-3 py-1 text-sm">{event.category.name}</p>
-          <div>
-            <p className="mb-2 flex items-center gap-2 text-sm">
-              <Calendar size={20} />
-              <span>{formatDateTime(event.startDateTime)}</span>
-            </p>
-            <p className="flex items-center gap-2 text-sm">
-              <Clock size={20} />
-              <span>Lasts for {formatTimeDifference(event.startDateTime, event.endDateTime)}</span>
-            </p>
-          </div>
-        </div>
-      </header>
+      <EventDetailsHeader
+        title={event.title}
+        location={event.location}
+        image_url={event.image_url}
+        startDateTime={formatDateTime(event.startDateTime)}
+        categoryName={event.category.name}
+        duration={formatTimeDifference(event.startDateTime, event.endDateTime)}
+      />
 
       <section className="card cold-span-2 flex flex-row items-start gap-4 p-5">
         {event.organizer.picture_url ? (
