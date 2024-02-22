@@ -1,15 +1,18 @@
+import { cn } from "@/lib/utils";
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 
 function EventDetailsOrganizer({
   organizerPictureURL,
   organizerName,
+  className,
 }: {
   organizerPictureURL: string | null;
   organizerName: string | null;
+  className?: string;
 }) {
   return (
-    <section className="card cold-span-2 flex flex-row items-start gap-4 p-5">
+    <section className={cn("card cold-span-2 flex flex-row items-start gap-4 p-5", className)}>
       {organizerPictureURL ? (
         <Image src={organizerPictureURL} alt="profile image" className="rounded-full" width={40} height={40} />
       ) : (

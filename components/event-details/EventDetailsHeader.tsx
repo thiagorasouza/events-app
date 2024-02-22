@@ -1,5 +1,7 @@
+import { cn } from "@/lib/utils";
 import { CalendarCheck, Clock, MapPin } from "lucide-react";
 import Image from "next/image";
+import React from "react";
 
 function EventDetailsHeader({
   image_url,
@@ -8,6 +10,7 @@ function EventDetailsHeader({
   categoryName,
   startDateTime,
   duration,
+  className,
 }: {
   image_url: string;
   title: string;
@@ -15,9 +18,10 @@ function EventDetailsHeader({
   categoryName: string;
   startDateTime: string;
   duration: string;
+  className?: string;
 }) {
   return (
-    <header className="card col-span-4 flex w-full flex-col lg:flex-row">
+    <header className={cn("card col-span-4 flex w-full flex-col lg:flex-row", className)}>
       <div className="rounded-xl lg:max-w-[300px]">
         <Image
           src={image_url}

@@ -6,6 +6,7 @@ import { formatDateTime, formatTimeDifference } from "@/lib/utils";
 import Link from "next/link";
 import EventDetailsHeader from "@/components/event-details/EventDetailsHeader";
 import EventDetailsOrganizer from "@/components/event-details/EventDetailsOrganizer";
+import EventDetailsDescription from "@/components/event-details/EventDetailsDescription";
 
 async function EventDetails({ params }: { params: { id: string } }) {
   const response = await getEventById(params.id);
@@ -19,7 +20,7 @@ async function EventDetails({ params }: { params: { id: string } }) {
   const event = response.data;
 
   return (
-    <article className="flex flex-col gap-3 px-3 ">
+    <article className="flex flex-col gap-3 px-3">
       <EventDetailsHeader
         title={event.title}
         location={event.location}
@@ -31,14 +32,7 @@ async function EventDetails({ params }: { params: { id: string } }) {
 
       <EventDetailsOrganizer organizerName={event.organizer.name} organizerPictureURL={event.organizer.picture_url} />
 
-      <section className="card col-span-3 flex flex-col gap-7 p-6">
-        <h2 className="text-xl font-bold leading-none">Description</h2>
-        <p>{event.description}</p>
-        <p className="flex items-center gap-2 text-sm">
-          <LinkIcon size={16} />
-          <Link href={event.external_url}>{event.external_url}</Link>
-        </p>
-      </section>
+      <EventDetailsDescription description={event.description} external_url={event.external_url} />
     </article>
   );
 }
