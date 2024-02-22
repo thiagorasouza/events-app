@@ -46,6 +46,7 @@ An events app to join expat events in Lisbon in one place.
 - [x] Test data and form submission
 - [x] Implement event details page
 - [ ] Make event details page responsive
+- [ ] Make user's name required
 
 ## :wrench: Credits
 
